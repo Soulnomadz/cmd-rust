@@ -1,0 +1,12 @@
+warning: unused import: `self`
+ --> catr/src/lib.rs:5:15
+  |
+5 | use std::fs::{self, File};
+  |               ^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: `catr` (lib) generated 1 warning (run `cargo fix --lib -p catr` to apply 1 suggestion)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
+     Running `/root/rust/cmd-rust/target/debug/catr asdfasdf`
+asdfasdf: No such file or directory (os error 2)
