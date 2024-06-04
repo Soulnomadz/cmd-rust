@@ -423,3 +423,4 @@ fn multiple_files_c4() -> Result<()> {
         "tests/expected/all.c4.out",
     )
 }
+

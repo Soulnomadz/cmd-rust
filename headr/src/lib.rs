@@ -36,30 +36,30 @@ pub struct Args {
 }
 
 pub fn run(args: Args) -> Result<()> {
-    // dbg!(args);
     for (file_num, filename) in args.files.iter().enumerate() {
-        let flag = 
-            if args.files.len() > 1 { true } else { false };
-
+        if args.files.len() > 1 {
+            println!("==> {} <==", &filename);
+        }
+        let ending = if file_num < args.files.len() - 1 { "\n".to_string() } 
+                                    else { "".to_string() };
         match open(&filename) {
             Err(err) => eprintln!("{}: {}", filename, err),
             Ok(mut file) => {
-                if flag {
-                    println!("==> {} <==", &filename);
-                }
-
                 match args.bytes {
                     Some(bytes) => {
                         let mut buf = vec![0; bytes as usize];
                         let bytes_read = file.read(&mut buf)?;
-                        println!("{}", String::from_utf8_lossy(&buf[..bytes_read]));
+                        print!("{}{}", 
+                            String::from_utf8_lossy(&buf[..bytes_read]),
+                            ending,
+                        );
                     },
                     _ => {
                         for line in file.lines().take(args.lines as usize) {
                             println!("{}", line?);
                         }
                         if file_num < args.files.len() - 1 {
-                            println!();
+                            print!("{}", ending);
                         }
                     } 
                 }
