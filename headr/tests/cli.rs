@@ -43,7 +43,7 @@ fn run(args: &[&str], expected: &str) -> Result<()> {
         .args(args)
         .output()?;
 
-    dbg!(&output);
+    // dbg!(&output);
     assert!(&output.status.success());
     assert_eq!(
         String::from_utf8_lossy(&output.stdout), 
